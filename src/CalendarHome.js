@@ -18,7 +18,7 @@ const CalendarHome = () => {
 
   const calendarID = process.env.REACT_APP_CALENDAR_ID;
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
+  console.log(events);
   const getEvents = () => {
     function initiate() {
       gapi.client
@@ -45,7 +45,9 @@ const CalendarHome = () => {
 
   const displayEvent = (e) => {
     const date = moment(e).format("YYYY-MM-DD");
+    console.log(date);
     const newEvent = events?.filter((event) => event.start.date === date);
+    console.log(newEvent);
     setDisplayEvents(newEvent);
   };
   // console.log(events);
@@ -68,6 +70,9 @@ const CalendarHome = () => {
           }}
           onChange={(e) => {
             displayEvent(e);
+          }}
+          onViewChange={() => {
+            setEvents(events);
           }}
         ></Calendar>
       </Box>
